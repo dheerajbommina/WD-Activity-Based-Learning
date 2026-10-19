@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</header><section class="contact-form">
+    <!-- Add any necessary scripts here -->
+    <script src="scripts.js"></script>
+
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🛍️ NEXORA | Online Shopping</title>
+<style>
+:root {
+  --navy: #152b45;
+  --blue: #315efb;
+  --muted: #68778a;
+  --line: #e3e9f1;
+  --green: #16845d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8faff;
+  color: #172337;
+  font-family: Arial, sans-serif;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.top {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.top strong {
+  color: #b6c9ff;
+}
+
+header {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border-bottom: 1px solid var(--line);
+}
+
+.head {
+  max-width: 1180px;
+  margin: auto;
+  padding: 15px 22px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.logo span {
+  color: var(--blue);
+}
+
+.search {
+  flex: 1;
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  outline: none;
+}
+
+.search button,
+.primary {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 12px 17px;
+  font-weight: bold;
+}
+
+.cart {
+  background: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: bold;
+}
+
+nav {
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 22px 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav button {
+  border: none;
+  background: #f3f6fb;
+  padding: 9px 13px;
+  border-radius: 8px;
+}
+
+nav button.active,
+nav button:hover {
+  background: #f9f9f9;
+  color: var(--blue);
+}
+
+main {
+  max-width: 1180px;
+  margin: auto;
+  padding: 25px 22px;
+}
+
+.hero {
+  background: linear-gradient(110deg, #dcdcf7, #cfdbff);
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.hero-text {
+  padding: 45px;
+  align-self: center;
+}
+
+.label {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.05;
+  margin: 15px 0;
+}
+
+.hero p {
+  color: #55657a;
+  line-height: 1.7;
+}
+
+.hero-art {
+  display: grid;
+  place-items: center;
+  font-size: 150px;
+  background: radial-gradient(circle, white, #bfceff);
+}
+
+.section-title {
+  margin: 35px 0 18px;
+}
+
+.section-title h2 {
+  margin-bottom: 5px;
+}
+
+.section-title p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 20px 0 30px;
+}
+
+.category {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.category span {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.category.active,
+.category:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.filters button {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  padding: 9px 13px;
+}
+
+.filters button.active {
+  background: var(--navy);
+  color: white;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px #18375e12;
+}
+
+.photo {
+  height: 175px;
+  background: #edf2fa;
+  position: relative;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: white;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 6px;
+}
+
+.heart {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+}
+
+.body {
+  padding: 14px;
+}
+
+.body h3 {
+  font-size: 15px;
+  margin: 0 0 8px;
+}
+
+.rating {
+  font-size: 12px;
+  color: #986b13;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  min-height: 36px;
+  margin: 8px 0;
+}
+
+.buyrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.price {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.old {
+  font-size: 11px;
+  text-decoration: line-through;
+  color: #999;
+}
+
+.add {
+  background: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 9px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.add:hover {
+  background: var(--blue);
+}
+
+.wide-banner {
+  margin: 35px 0;
+  border-radius: 16px;
+  background: #dff3eb;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.secondary {
+  background: white;
+  color: var(--navy);
+  border: 1px solid var(--line);
+  padding: 12px;
+  border-radius: 9px;
+}
+
+footer {
+  background: var(--navy);
+  color: white;
+  padding: 30px 22px;
+}
+
+footer p {
+  color: #c0cddd;
+  font-size: 13px;
+}
+
+.overlay,
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #10213780;
+  z-index: 10;
+}
+
+.overlay.open,
+.modal.open {
+  display: flex;
+}
+
+.overlay {
+  justify-content: flex-end;
+}
+
+.drawer {
+  width: min(410px, 100%);
+  height: 100%;
+  background: white;
+  padding: 23px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  border: none;
+  background: #edf1f7;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.cartlist {
+  flex: 1;
+  margin: 20px 0;
+}
+
+.lineitem {
+  display: grid;
+  grid-template-columns: 45px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.lineitem h4 {
+  margin: 0 0 5px;
+  font-size: 13px;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.qty button {
+  background: white;
+  border: 1px solid var(--line);
+  width: 25px;
+  height: 25px;
+}
+
+.totals {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.totals div {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.modal {
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.box {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  width: min(440px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 15px);
+  background: var(--navy);
+  color: white;
+  padding: 12px 17px;
+  border-radius: 9px;
+  opacity: 0;
+  transition: .2s;
+  z-index: 30;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media(max-width: 850px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .head {
+    flex-wrap: wrap;
+  }
+
+  .search {
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+@media(max-width: 600px) {
+  main {
+    padding: 16px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text {
+    padding: 28px;
+  }
+
+  .hero-art {
+    min-height: 180px;
+    font-size: 100px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .photo {
+    height: 135px;
+  }
+
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+  }
+
+  .category {
+    padding: 10px 5px;
+    font-size: 12px;
+  }
+
+  .buyrow {
+    flex-wrap: wrap;
+  }
+
+  .wide-banner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+<div class="top">
+  WELCOME TO NEXORA MARKET ·
+  <strong>Free delivery on orders above ₹999</strong>
+</div>
+
+<header>
+  <div class="head">
+    <div class="logo"><img src="https://i.pinimg.com/1200x/0d/8c/1d/0d8c1d92b6db9d907b6438388481676e.jpg" width="200" height="200" alt="NEXORA"> NEXORA<span>.</span></div>
+
+    <div class="search">
+      <input id="search" placeholder="Search products..." aria-label="Search products">
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <button class="cart" id="openCart">
+      🛒 Cart <span id="count">0</span>
+    </button>
+  </div>
+
+  <login>
+    <button id="loginBtn">Login</button>
+  </login>
+  <signup>
+    <button id="signupBtn">Sign Up</button>
+  </signup>
+
+  <nav>
+    <button class="active" data-cat="all">All products</button>
+    <button data-cat="home">Home & living</button>
+    <button data-cat="tech">Electronics</button>
+    <button data-cat="style">Fashion</button>
+    <button data-cat="gifts">Gifts</button>
+    <button data-cat="beauty">Beauty</button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <div class="label">THE EVERYDAY EDIT · 2026</div>
+      <h1>Good finds.<br>Better days.</h1>
+      <p>
+        Discover useful essentials, thoughtful gifts and smart little
+        upgrades for your space and your routine.
+      </p>
+      <button class="primary" id="shopNow">Shop bestsellers →</button>
+    </div>
+    <div class="hero-art">🛍️ ✨ 🎧</div>
+  </section>
+  <section class="wide-banner">
+    <div>
+      <h2>Get 10% off your first order</h2>
+      <p>Sign up for our newsletter and receive a discount code.</p>
+    </div>
+    <button class="secondary" id="subscribeBtn">Subscribe</button>
+  </section>
+  <products-section>
+  
+<section class="product-page">
+  <nav>
+  <products-section>
+    <p><div><img src="https://i.pinimg.com/1200x/47/bf/9c/47bf9c0bb7374b4ae3983eda95f5ab95.jpg" width="100" height="100">Apple 2026 MacBook Pro Laptop with M5 Pro chip with 18‑core CPU and 20‑core GPU: Built for AI, 41.05 cm (16.2″) Liquid Retina XDR Display, 48GB Unified Memory, 1TB SSD Storage; Silver</p></div>
+    <img src="https://m.media-amazon.com/images/I/61NJjTxLyiL._SX679_.jpg" alt="Product 1" width="200">
+    <img src="https://m.media-amazon.com/images/I/71WwpFA6VjL._SX679_.jpg" alt="Product 1" width="200">
+    <img src="https://m.media-amazon.com/images/I/81XMKx-bVAL._SX679_.jpg" alt="Product 1" width="200">
+    <video width="400" controls>
+    <source src="https://media-ik.croma.com/Croma%20Assets/Videos/2026%20Videos/324264_lUKUx9NyT.mp4/ik-video.mp4?updatedAt=1784099651938&tr=q-70" type="video/mp4">
+</video>
+<price> 
+<h2>-5% ₹4,10,990</h2> 
+<p>M.R.P.: ₹̶4̶,̶3̶1̶,̶9̶0̶0̶</p>
+<p>EMI starts at ₹14,449. No Cost EMI available</p>
+<p> 
+Offers
+Cashback
+Upto ₹12,329.00 cashback as Amazon Pay Balance when you pay with Amazon Pay ICICI Bank Credit CardsUpto ₹12,329.00 cashback as Amazon Pay Balance when…
+1 offer</p>
+<p>Brand-Apple,
+Model Name-16-inch MacBook Pro (M5 Pro 2026),
+Screen Size-16 Inches,
+Colour-Silver,
+CPU Model-Apple M4,
+RAM Memory Installed Size-48 GB,
+Operating System-Mac OS,
+Graphics Card Description-Integrated
+CPU Speed-1 GHz
+Hard Disk Description-SSD</p>
+<p>About this item=
+FAST RUNS IN THE FAMILY — The 16″ MacBook Pro with the M5 Pro or M5 Max chip brings next-generation speed and powerful on-device AI to personal, professional and creative tasks. With all-day battery life, double the starting storage and a breathtaking Liquid Retina XDR display, it’s pro in every way.
+BUCKLE UP — Along with a next-generation CPU, faster unified memory and double the starting storage, M5 Pro and M5 Max feature a more powerful GPU with a Neural Accelerator built into each core, delivering faster AI performance and on-device training capabilities. So you can blaze through demanding workloads at mind-bending speeds.
+BUILT FOR AI — Apple silicon, and every major component that powers it, is designed to run demanding on-device AI workloads like LLM inference and training. And Apple Intelligence helps you write, express yourself and get things done effortlessly with groundbreaking privacy protections at every step.
+ALL-DAY BATTERY LIFE — MacBook Pro delivers the same exceptional performance whether it’s running on battery or plugged in.
+MACOS RUNS APPS FAST — All your go-to apps run lightning fast in macOS, including built-in apps like FaceTime and Messages. Plus, built-in virus protection and free software updates help keep your Mac running smoothly and securely.</p>
+ </price>
+<nav>
+  <add to-cart>
+    <button class="add" id="addToCartBtn">Add to Cart</button>
+    <button class="add" id="buyNowBtn">Buy Now</button>
+  </add to-cart>
+  <share>
+    <button class="add" id="shareBtn">Share</button>
+  </share>
+  <product section>
+    <Product next section>
+      <h2>Related Products</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://m.media-amazon.com/images/I/71rhZEheSZL._SX679_.jpg" height="200" width="200" alt="Laptop">
+          <h3>Dell Inspiron Laptop</h3>
+          <p>⭐ 4.5 Rating</p>
+          <h2>₹45,999</h2>
+          <button onclick="showDetails()">View Details</button>
+          <div id="details">
+            <p>RAM: 16 GB</p>
+            <p>Storage: 512 GB SSD</p>
+            <p>Battery: 6000 mAh</p>
+            <p>Display: 15.6-inch</p>
+            <add to cart>
+              <button class="add" id="addToCartBtn">Add to Cart</button>
+            <button onclick="alert('Demo only: Checkout is not connected')">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="card">
+
+<img src="https://m.media-amazon.com/images/I/71AlmDfE-WL._SX679_.jpg" height="200" width="200" alt="Mobile">
+<h3>Samsung Galaxy Mobile  S25 Ultra 5G AI Smartphone</h3>
+<p>⭐ 4.4 Rating</p>
+<h2> 1,09,999 </h2>
+<button onclick="showDetails()">View Details</button>
+<div id="details">
+<p>RAM:  12 GB</p>
+<p>Storage:  512 GB</p>
+<p>Battery: 5000 mAh</p>
+<p>Display: 6.9-inch</p>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</div>
+        </div class="card">
+
+<div class="card">
+
+  <img src="https://m.media-amazon.com/images/I/71M6y0l8t+L._SX522_.jpg" height="200" width="200" alt="Headphones">
+  <h3>Sennheiser HDB 630 Wireless Headphones incl. Hi-Res BT Dongle, Lunar Silver</h3>
+  <p>⭐ 4.6 Rating</p>
+  <h2> ₹41,490 </h2>
+  <button onclick="showDetails()">View Details</button>
+  <div id="details">
+    <p>Noise Cancelling: Hybrid Adaptive Noise Cancellation (ANC).</p>
+    <p>Battery Life: Up to  60  hours</p>
+    <add to cart>
+      <button class="add" id="addToCartBtn">Add to Cart</button>
+    </add to cart>
+    <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+  </div>
+</div>
+<next product>
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/71N8gSQ1kLL._SY355_.jpg" height="200" width="200" alt="Earbuds">
+<h3>Sennheiser Momentum True Wireless 5 Earbuds (New Launch)</h3>
+<p>⭐ 4.1 Rating</p>
+<h2> ₹29,990  </h2>
+<button onclick="showDetails()">View Details</button>
+<div id="details">
+  <p>Noise Cancelling: Hybrid Adaptive Noise Cancellation (ANC).</p>
+  <p>Battery Life: Up to  40  hours</p>
+  <add to cart>
+    <button class="add" id="addToCartBtn">Add to Cart</button>
+  </add to cart>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</div>
+</div>
+<div class="card"></div>
+
+</next>
+<img src="https://m.media-amazon.com/images/I/81ABJMRLcxL._SX522_.jpg" height="200" width="250" alt="Tv">
+<h3>Sony Bravia 195 cm (77 inches) XR series 4K Ultra HD Smart OLED Google TV XR-77A80J (Black)</h3>
+<p>⭐ 4.5 Rating</p>
+<h2> ₹5,24,490   </h2>
+<button onclick="showDetails()">View Details</button>
+<div id="details">
+  <p>Screen Size:	77 Inches</p>
+  <p>Brand:	Sony</p>
+  <p>Resolution:	4K </p>
+  <p>Refresh Rate:	120 Hz</p>
+  <p>Display Technology:	OLED</p>
+  <p>Special Feature:	Acoustic Surface Audio+, HDMI 2.1, Variable Refresh Rate for HDMI™3/4, XR 4K Upscaling, XR Motion Clarity™</p>
+  <add to cart>
+    <button class="add" id="addToCartBtn">Add to Cart</button>
+  </add to cart>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+
+<img src="https://rukminim2.flixcart.com/image/1536/1536/xif0q/speaker/home-theatre/a/q/m/sbw-xceed-blaupunkt-original-imahga54mhvzzaxz.jpeg?q=90" height="200" width="200" alt="Home Theatre">
+<h3>Blaupunkt SBW600 XCEED 9.1.4 Dolby Atmos I 360 Surround Sound I Premium Home Theater 700 W Bluetooth Home Theatre (Grey, 9.1.4 Channel)</h3>
+<p>⭐ 4.3 Rating</p>
+<h2> ₹44,990  </h2>
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+<button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</div>
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/714MbxORzrL._SX679_.jpg" height="200" width="200" alt="Wall Decor">
+<h3>No-Drill Wall Hanging Shelf | Elegant Boho Wall Decor for Plants and Home Decoration, Living Room, Bedroom & Balcony | Handwoven Art Piece</h3>
+<div class="card">
+<p>⭐ 4.2 Rating</p>
+<h2> ₹99  </h2>
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<Buy now>
+<button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</div>
+
+
+<img src="https://m.media-amazon.com/images/I/81cn5ubXbHL._SX522_.jpg" height="200" width="200" alt="Wall Decor">
+<h3>Multi-Shape Makeup Sponge Set | 20 Piece Beauty Puff Collection with Headband and Clean Sponge | Pink, Purple, Beige & Bright Sets | Face Blender Kit for Cream, Liquid & Powder | Aesthetic and Functional Makeup Tool (Brown, 20Pcs) Piece</h3>
+<p>⭐ 4.2 Rating</p>
+<h2> ₹249  </h2>
+<div class="card">
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<Buy now>
+<button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</div>
+<div class="card">
+
+    <img src="https://m.media-amazon.com/images/I/718iewTkwuL._SX679_.jpg" height="200" width="200" alt="Furniture">
+    <h3>ShadowKart Upholstered Ottoman Storage Bench, Premium Boucle Fabric, Heavy Duty 120 Kg Load Capacity, Multipurpose Seating for Living Room & Bedroom, Cream</h3>
+    <p>⭐ 3.7 Rating</p>
+    <h2> ₹3,999  </h2>
+    <view details>
+    <button onclick="showDetails()">View Details</button>
+    </view>
+    <add to cart>
+      <button class="add" id="addToCartBtn">Add to Cart</button>
+    </add to cart>
+    <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+    </div>
+  </div>
+</div card>
+
+<img src="https://m.media-amazon.com/images/I/6164qkuWH1L._SY741_.jpg" height="300" width="200" alt="fashion">
+<h3>Louis Philippe Men's Slim Fit Engineered Stripe and Yarn Dyed Pique Polo Tshirt</h3>
+<p>⭐ 4.1 Rating</p>
+<h2> ₹1,499  </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</Buy now>
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+</div>
+
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/61WogfGlKYL._SY741_.jpg" height="220" width="220" alt="fashion">
+<h3>Levi's Men's 555 Light Indigo Relaxed Straight Fit Mid Rise Jeans</h3>
+<p>⭐ 4.3 Rating</p>
+<h2> ₹2,999  </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+<img src="https://m.media-amazon.com/images/I/712D9+YSFEL._SY741_.jpg" height="220" width="220" alt="fashion">
+<h3>Louis Philippe Men's Slim Fit Everyday Smart Wear Comfort Stretch Work Ready Textured Formal Trouser</h3>
+<p>⭐ 4.4 Rating</p>
+<h2> ₹2,989  </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+<img src="https://m.media-amazon.com/images/I/71OQAXM0RoL._SX679_.jpg" height="300" width="300" alt="Gift">
+<h3>Collectible India Metal Gold Plated Radha Krishna Idol Sculpture Statue Figurine Decorative Showpiece for Janmashtami Home Decoration Temple and Gift (Size 7 x 5 Inches) (1 Pieces)</h3>
+<p>⭐ 4.5 Rating</p>
+<h2> ₹1,299  </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+<img src="https://m.media-amazon.com/images/I/61wuZc8bflL._SY695_.jpg" height="300" width="300" alt="Gift">
+<h3>Malabar Gold & Diamonds 999 Purity Silver Bar 1 Kg (1000 Grams) | Silver Coin cum Bar for Birthday, Anniversary and Diwali Gift</h3>
+<p>⭐ 4.8 Rating</p>
+<h2> ₹2,53,399   </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+<button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+<img src="https://rukminim2.flixcart.com/image/1536/1536/xif0q/speaker/w/y/r/-original-imahfcgxyahvyht6.jpeg?q=90" height="320" width="400" alt="Home Theatre">
+<h3>JBL Bar 1300 True Dolby Atmos with,DTS:X,MultiBeam,10" Subwoofer,HDMI 1170 W Bluetooth Soundbar (Black, 11.1.4 Channel)</h3>
+<p>⭐ 4.3 Rating</p>
+<h2> ₹1,59,999  </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+  <button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+<img src="https://m.media-amazon.com/images/I/51PF1LE46nL._SX679_.jpg" height="320" width="400" alt="furniture">
+<h3>AMATA Eagle Solid Wood 3 Seater Sofa Cum Bed Grey Suede Velvet with Two Cushions Perfect for Home Living Office Room and Guests (Grey, Medium)(3 yrs Warranty)</h3>
+<p>⭐ 4.7 Rating</p>
+<h2> ₹15,009   </h2>
+<back ground color>
+  <p>Color: Grey</p>
+  <p>Material: Suede Velvet</p>
+  <p>Seating Capacity: 3 Seater</p>
+  <p>Weight: 35 Kg</p>
+  <p>Warranty: 3 Years</p>
+</back ground color>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+  <button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+<img src="https://m.media-amazon.com/images/I/81S2qM-v8IL._SX679_.jpg" height="200" width="200" alt="Watch">
+<h3>Police Quartz Multifunction Black DIAL Leather Strap Watch for Men-PLPEWJF2203704W</h3>
+<p>⭐ 4.1 Rating</p>
+<h2> ₹21,643.57   </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+  <button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+<img src="https://m.media-amazon.com/images/I/41ScDr67t5L.jpg" height="300" width="200" alt="Smartphone">
+<h3>Motorola Edge 70 Fusion (Pantone Silhouette, 12GB RAM, 256GB Storage) | 6.78" 144Hz AMOLED | Snapdragon 7s Gen 4 | 50MP OIS + 13MP Camera | 32MP Selfie | 7000mAh Battery | 68W TurboPower |</h3>
+<p>⭐ 4.1 Rating</p>
+<h2> ₹34,389    </h2>
+<add to cart>
+  <button class="add" id="addToCartBtn">Add to Cart</button>
+</add to cart>
+<buy now>
+  <button onclick="alert('Demo only: Checkout is connected')">Buy Now</button>
+</buy now>
+<view details>
+  <button onclick="showDetails()">View Details</button>
+</view>
+<div></div>
+<div class="card"></div>
+
+
+
+
+<style>
+body {
+    background-color: lightblue;
+}
+</style>
+
+<div></div>
+</div class="card"></div>
+
+
+<img src="https://rukminim2.flixcart.com/fk-p-flap/3140/700/image/d1e427d69df7b448.png?q=60" height="300" width="900" alt="Advertisement">
+<style>
+  .advertisement {
+    text-align: center;
+    margin: 20px 0;
+  }
+  </style>
+  <reviews>
+    <h2>Customer Reviews</h2>
+    <p>Read what our customers have to say about their experience with NEXORA products and services.</p>
+    <button class="add" id="writeReviewBtn">Write a Review</button>
+    </write review>
+      <form id="reviewForm">
+        <div class="field">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="rating">Rating:</label>
+          <select id="rating" name="rating" required>
+            <option value="">Select rating</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="review">Review:</label>
+          <textarea id="review" name="review" rows="4" required></textarea>
+        </div>
+     
+    <Submit review>
+      <button class="add" id="submitReviewBtn">Submit Review</button>
+
+    <div class="grid">
+      <div class="card">
+        <h3>John Doe</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>Great product! Highly recommend.</p>
+      </div>
+      <div class="card">
+        <h3>Jane Smith</h3>
+        <p>⭐⭐⭐⭐</p>
+        <p>Good value for money. Satisfied with the purchase.</p>
+      </div>
+      <div class="card">
+        <h3>Mike Johnson</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>Excellent quality and fast shipping!</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Emily Davis</h3>
+      <p>⭐⭐⭐⭐</p>
+      <p>Product met my expectations. Will buy again.</p>
+    </div>
+    <div class="card">
+      <h3>David Wilson</h3>
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>Very satisfied with the product. Great customer service.</p>
+    </div>
+    <div class="card">
+      <h3>Mihcil</h3>
+      <p>⭐⭐⭐⭐</p>
+      <p>Good quality and fast delivery. Happy with the purchase.</p>
+    </div>
+  </reviews>
+  
+  
+  <about us>
+    <h2>About Us</h2>
+    <p>Welcome to NEXORA — your destination for smart and stylish shopping!
+
+At NEXORA, we aim to make online shopping simple, convenient, and enjoyable. Explore a variety of products, discover exciting deals, and find products that suit your needs.
+
+Our goal is to provide a smooth shopping experience with quality products, affordable prices, and customer satisfaction.
+
+NEXORA — Shop Smart. Live Better.</p>
+<div class="grid">
+    <div class="card">
+      <h3>Our Mission</h3>
+      <p>To provide a seamless online shopping experience with a wide range of products and excellent customer service.</p>
+    </div>
+    <div class="card">
+      <h3>Our Vision</h3>
+      <p>To be the most trusted and preferred online shopping destination for customers worldwide.</p>
+    </div>
+    <div class="card">
+      <h3>Contact Us</h3>
+      <p>Email: NEXORA@gmail.com</p>
+      <p>Phone: +91 6286945609</p>
+    </div>
+  </div>
+</div>
+Location: HITEC City,Hyderabad, Telangana, India
+<p>Other countries: Germany, Japan, China, Singapore,America.</p>
+  </about us>
+  <Teams and condition>
+    <h2>Terms and Conditions</h2>
+    <p>By using NEXORA, you agree to our terms and conditions. Please read them carefully before making a purchase.</p>
+    <ul>
+      <li>All products are subject to availability.</li>
+      <li>Prices and offers are subject to change without notice.</li>
+      <li>We reserve the right to refuse service to anyone for any reason at any time.</li>
+      <li>Returns and refunds are subject to our return policy.</li>
+    </ul>
+    <br>
+    <p></p>
+
+
+    <p>&copy; 2026 NEXORA. All rights reserved.</p>

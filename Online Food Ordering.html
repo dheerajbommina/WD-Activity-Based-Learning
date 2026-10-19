@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FoodNova 🚀 | Food Ordering</title>
+
+<body style="background-color: rgb(230, 183, 173);"></body>
+<style>
+    
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fffdf9;
+    color: #272727;
+}
+
+.offerbar {
+    background: #262626;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.offerbar b {
+    color: #ffc08d;
+}
+
+.header {
+    background: #fffdf9;
+    border-bottom: 1px solid #eee3d9;
+}
+
+.head {
+    max-width: 1160px;
+    margin: auto;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #eb5738;
+}
+
+.location {
+    color: #777;
+    font-size: 12px;
+    border-left: 1px solid #eee3d9;
+    padding-left: 18px;
+}
+
+.location b {
+    display: block;
+    color: #272727;
+    margin-top: 5px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.cart {
+    text-decoration: none;
+    background: #eb5738;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.nav {
+    max-width: 1160px;
+    margin: auto;
+    padding: 0 22px 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #625e59;
+    padding: 9px 15px;
+    border-radius: 25px;
+}
+
+.nav a:hover {
+    background: #ffe6dc;
+    color: #ca4327;
+}
+
+main {
+    max-width: 1160px;
+    margin: auto;
+    padding: 25px 22px;
+}
+
+.hero {
+    background: linear-gradient(115deg, #ffe0cf, #fff0df);
+    border-radius: 23px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.copy {
+    padding: 45px;
+    align-self: center;
+}
+
+.eyebrow {
+    color: #eb5738;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+h1 {
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.05;
+    margin: 15px 0;
+}
+
+.copy p {
+    color: #685d56;
+    line-height: 1.7;
+}
+
+.btn {
+    display: inline-block;
+    background: #eb5738;
+    color: white;
+    text-decoration: none;
+    padding: 13px 19px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.art {
+    display: grid;
+    place-items: center;
+    min-height: 300px;
+    font-size: 150px;
+    background: radial-gradient(circle, #fff5ea, #ffd3b7);
+}
+
+.perks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 22px 0 35px;
+}
+
+.perk {
+    padding: 17px;
+    background: #f8f5ef;
+    border: 1px solid #efe7dd;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.perk span {
+    font-size: 28px;
+}
+
+.perk b,
+.perk small {
+    display: block;
+}
+
+.perk small {
+    color: #777;
+    margin-top: 5px;
+}
+
+.headrow {
+    margin: 30px 0 18px;
+}
+
+.headrow h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.headrow p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* CSS-only category filters */
+
+.filter-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.filters {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+
+.chip {
+    display: inline-block;
+    padding: 10px 16px;
+    background: white;
+    border: 1px solid #eee3d9;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.filter-radio:checked + label {
+    background: #292929;
+    color: white;
+    border-color: #292929;
+}
+
+#filter-mains:checked ~ #menu .foodcard:not(.mains),
+#filter-snacks:checked ~ #menu .foodcard:not(.snacks),
+#filter-drinks:checked ~ #menu .foodcard:not(.drinks),
+#filter-dessert:checked ~ #menu .foodcard:not(.dessert) {
+    display: none;
+}
+
+.foodgrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+}
+
+.foodcard {
+    border: 1px solid #eee3d9;
+    border-radius: 17px;
+    overflow: hidden;
+    background: white;
+    transition: 0.2s;
+}
+
+.foodcard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px #60351b12;
+}
+
+.foodphoto {
+    height: 190px;
+    position: relative;
+    background: #f5eee6;
+}
+
+.foodphoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: white;
+    padding: 6px 9px;
+    border-radius: 6px;
+    color: #eb5738;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.info {
+    padding: 16px;
+}
+
+.name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.name-row h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.rating {
+    white-space: nowrap;
+    background: #e8f6ee;
+    color: #27734b;
+    padding: 5px 7px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.info p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #777;
+    min-height: 38px;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: 13px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.add {
+    text-decoration: none;
+    border: 1px solid #ffd0c2;
+    background: #fff2ed;
+    color: #d3482b;
+    border-radius: 9px;
+    padding: 9px 12px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.add:hover {
+    background: #eb5738;
+    color: white;
+}
+
+.promo {
+    background: #e7f4e9;
+    border-radius: 18px;
+    padding: 25px;
+    margin: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.promo h3 {
+    margin-top: 0;
+}
+
+.promo p {
+    color: #557460;
+    font-size: 13px;
+}
+
+.static-note {
+    background: #fff5e9;
+    padding: 15px;
+    border-radius: 10px;
+    color: #735b48;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer {
+    background: #272727;
+    color: white;
+    padding: 30px 22px;
+}
+
+.footin {
+    max-width: 1160px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.footer p {
+    font-size: 12px;
+    color: #c9c1bb;
+    line-height: 1.7;
+}
+
+@media (max-width: 800px) {
+    .foodgrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .perks {
+        grid-template-columns: 1fr;
+    }
+
+    .art {
+        font-size: 110px;
+    }
+
+    .copy {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 560px) {
+    main {
+        padding: 15px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .art {
+        min-height: 190px;
+    }
+
+    .foodgrid {
+        gap: 10px;
+    }
+
+    .foodphoto {
+        height: 130px;
+    }
+
+    .info {
+        padding: 10px;
+    }
+
+    .name-row {
+        flex-direction: column;
+    }
+
+    .name-row h3 {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 15px;
+    }
+
+    .add {
+        padding: 8px;
+    }
+
+    .promo {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="offerbar">
+    HUNGRY? <b>Get ₹100 off your first order</b>
+    · Use code <strong>FIRSTBITE</strong>
+</div>
+
+<header class="header">
+    <div class="head">
+        <img src="https://i.pinimg.com/1200x/c9/0b/06/c90b06acd33294c49663e80a17ba0b3e.jpg" alt="FoodNova Logo" width="200" height="200">
+        <div class="logo">Food<span>Nova</span></div>
+
+        <div class="location">
+            DELIVERING TO
+            <b>📍 Vijayawada</b>
+        </div>
+
+        <div class="spacer"></div>
+
+        <a class="cart" href="#demo-order">🍽️ Order Info</a>
+    </div>
+
+    <nav class="nav">
+        <a href="#menuHead">All Dishes</a>
+        <a href="#filter-mains">Meals</a>
+        <a href="#filter-snacks">Snacks</a>
+        <a href="#filter-drinks">Drinks</a>
+        <a href="#filter-dessert">Desserts</a>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="copy">
+        <div class="eyebrow">YOUR CRAVINGS, SORTED</div>
+        <h1>Good food.<br>Right on time.</h1>
+        <p>
+            From quick lunch bowls to afternoon treats,
+            discover something delicious for every day.
+        </p>
+        <a class="btn" href="#menuHead">Explore the Menu ↓</a>
+    </div>
+
+    <div class="art">🍔 🍟 🥤</div>
+</section>
+
+<div class="perks">
+    <div class="perk">
+        <span>🛵</span>
+        <div>
+            <b>Quick Delivery</b>
+            <small>Typical estimate: 25–40 min</small>
+        </div>
+    </div>
+
+    <div class="perk">
+        <span>🥗</span>
+        <div>
+            <b>Freshly Prepared</b>
+            <small>Fresh and delicious choices</small>
+        </div>
+    </div>
+
+    <div class="perk">
+        <span>💸</span>
+        <div>
+            <b>Lunch Deals</b>
+            <small>Save on selected favourites</small>
+        </div>
+    </div>
+</div>
+
+<div class="headrow" id="menuHead">
+    <h2>What Are You Craving?</h2>
+    <p>Popular picks from our sample menu.</p>
+</div>
+
+<input class="filter-radio" type="radio" name="category"
+       id="filter-all" checked>
+<input class="filter-radio" type="radio" name="category"
+       id="filter-mains">
+<input class="filter-radio" type="radio" name="category"
+       id="filter-snacks">
+<input class="filter-radio" type="radio" name="category"
+       id="filter-drinks">
+<input class="filter-radio" type="radio" name="category"
+       id="filter-dessert">
+       <div class="filters">
+    <label class="chip" for="filter-all">Everything</label>
+    <label class="chip" for="filter-mains">🍱 Meals</label>
+    <label class="chip" for="filter-snacks">🍟 Snacks</label>
+    <label class="chip" for="filter-drinks">🥤 Drinks</label>
+    <label class="chip" for="filter-dessert">🍰 Desserts</label>
+</div>
+
+<section class="foodgrid" id="menu">
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80" alt="Paneer Rice Bowl">
+            <span class="tag">POPULAR</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Paneer Tikka Rice Bowl</h3>
+                <span class="rating">★ 2.8</span>
+            </div>
+            <p>Smoky paneer, rice, salad and mint dressing.</p>
+            <div class="line">
+                <span class="price">₹229</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/2/25/35915070-657c-4a9e-be56-9cf5aa544b96_90b07cf3-7bc8-4324-a7c8-a9f5b9564939.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Mini Tangdi Dum Briyani</h3>
+                <span class="rating">★ 4.1</span>
+            </div>
+            <p>Served in 500 ML, Tangdi 1 Piece with Salan and Raita.</p>
+            <div class="line">
+                <span class="price">₹450</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard snacks">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/c4e398fd2ad68282f233751b061f858d" alt="Paneer Rice Bowl">
+          <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Veg Manchurian</h3>
+                <span class="rating">★ 3.9</span>
+            </div>
+            <p>Served in 500 ML, Tangdi 1 Piece with Salan and Raita.</p>
+            <div class="line">
+                <span class="price">₹450</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard snacks">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/3/6/e6b673a6-0491-45dc-9f7a-9ac83f48d540_58eb6c2b-a740-43fd-8b60-69c18e1495be.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Crispy Chicken</h3>
+                <span class="rating">★ 3.2</span>
+            </div>
+            <div class="line">
+                <span class="price">₹395</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/df99550e05baab77d99333868a4d9297" alt="Paneer Rice Bowl">
+            <span class="tag">SPECIAL</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Olive Tree Special Veg Fried Rice</h3>
+                <span class="rating">★ 3.8</span>
+            </div>
+            <p>Wholesome Stir-Fried Rice With A Mixture Of Chopped Vegetables, Babycorn,Mix With Cashew.</p>
+            <div class="line">
+                <span class="price">₹360</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/94085e549ea90f3090e248655b4da6bf" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Fried Rice</h3>
+                <span class="rating">★ 3.8</span>
+            </div>
+            <p>Rice Cooked With An Assortment Of Veggies, Chinese Sauces And Chicken Bits To Make It Enjoyable.</p>
+            <div class="line">
+                <span class="price">₹370</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard snacks">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/efea8cf670b2182f1249ea82375a5c3b" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Soft Noodles</h3>
+                <span class="rating">★ 4.4</span>
+            </div>
+            <p>Rice Cooked With An Assortment Of Veggies, Chinese Sauces And Chicken Bits To Make It Enjoyable.</p>
+            <div class="line">
+                <span class="price">₹390</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/21cb9973930fdcc9010aa002b94249f2" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Tikka Biryani</h3>
+                <span class="rating">★ 4.2</span>
+            </div>
+            <p>Served With 1 Gulab Jamun, Raita And Salan.</p>
+            <div class="line">
+                <span class="price">₹466</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/fd3579aaf480ca06a2361488d380686d" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Prawns Biryani</h3>
+                <span class="rating">★ 4.4</span>
+            </div>
+            <p>Served With 1 Gulab Jamun, Raita And Salan.</p>
+            <div class="line">
+                <span class="price">₹495</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard Soups">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/104be7adb5f6591e25077f7c493ed1db" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Manchow Soup</h3>
+                <span class="rating">★ 4.2</span>
+            </div>
+            <p>A Delicious Soup Made With Chicken Chunks Cooked In Spicy Flavours And Served With Fried Noodles..</p>
+            <div class="line">
+                <span class="price">₹250</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard starters">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/1/26/7ba04940-b57a-4031-a8b2-34b2c7e25faf_66e28696-9a37-46f7-a2d3-e870c771e813.JPG" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Ginger Chicken</h3>
+                <span class="rating">★ 4.0</span>
+            </div>
+           
+            <div class="line">
+                <span class="price">₹350</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+    
+<article class="foodcard Soups">
+        <div class="foodphoto">
+            <img src="
+            https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/2/8/2e9e621e-378d-4b1e-bf09-190950a372c3_a956cffa-8d82-490e-bfd6-20e9cd77ca45.JPG" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Hot N Sour Soup</h3>
+                <span class="rating">★ 3.1</span>
+            </div>
+            <div class="line">
+                <span class="price">₹250</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+<article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/28112c3cb97b8466608d21f3908fa8a5" alt="Paneer Rice Bowl">
+             <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Veg Sweet Corn Soup</h3>
+                <span class="rating">★ 3.3</span>
+            </div>
+            <p>Veg Sweet Corn Soup Is Made With Mixed Veggies, Sweet Corn Kernels, Salt And Pepper..</p>
+            <div class="line">
+                <span class="price">₹230</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard starters">
+        <div class="foodphoto">
+            <img src="https://www.licious.in/blog/wp-content/uploads/2022/04/shutterstock_1498639676-min.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chilli Chicken</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>Our Street Style Classic, Batter Fried Chicken Tossed In Chilli Paste And Dry Spices, Finished With Fresh Coriander And Chopped Spring Onions.Contains Gluten, Soya Sauce.</p>
+            <div class="line">
+                <span class="price">₹350</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard starters">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2024/7/15/f0812c90-a6b4-43f4-acca-3206bb0011db_a6f10cac-7dfa-4049-8404-f850ad2824c0.jpeg" alt="Paneer Rice Bowl">
+        <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chilli Naan</h3>
+                <span class="rating">★ 3.4</span>
+            </div>
+            <div class="line">
+                <span class="price">₹155</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard starters">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2024/7/15/e04966bd-a6e4-4786-981b-a0996dd9a34b_c55703e4-144b-463e-a9f3-c846e1445270.jpeg" alt="Paneer Rice Bowl">
+        <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Butter Naan</h3>
+                <span class="rating">★ 3.8</span>
+            </div>
+            <div class="line">
+                <span class="price">₹155</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard desserts">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2024/7/15/f0f037b6-258f-4e4f-912a-05259353a8d9_468456f4-0e5d-4000-a402-2715328e1ad2.jpeg" alt="Paneer Rice Bowl">
+        <span class="tag">SPECIAL</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3> Gulab Jamun With Rabidi</h3>
+                <span class="rating">★ 4.5</span>
+            </div>
+            <div class="line">
+                <span class="price">₹270</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard desserts">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2024/7/15/6f2e626c-cb8d-4c59-a255-9a19c70194c4_114d5eee-f4ec-4006-b38c-6544229f8e9f.jpeg" alt="Paneer Rice Bowl">
+        <span class="tag">SPECIAL</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Malai Sandwich</h3>
+                <span class="rating">★ 3.0</span>
+            </div>
+            <div class="line">
+                <span class="price">₹370</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard currys">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/4/5/21825dfa-4ac9-4b32-a25e-3b2e01da9523_51f3286b-d419-4896-98c9-29d030c71fd9.jpeg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Methi Chaman</h3>
+                <span class="rating">★ 4.0</span>
+            </div>
+            <div class="line">
+                <span class="price">₹460</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard currys">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2024/7/15/a1519420-4849-4ff9-acc0-4e5620778b85_10dfc645-ee83-4555-983b-8707dd6cb9a0.jpeg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Kaju Butter Masala</h3>
+                <span class="rating">★ 4.6</span>
+            </div>
+            <div class="line">
+                <span class="price">₹460</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard currys">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/5/26/1ac4d74c-7570-4dba-87aa-b9efd7dd4142_cf93de7c-ee59-4d9a-ae55-f76377368668.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Krisper with Reg Fries</h3>
+                <span class="rating">★ 3.5</span>
+            </div>
+            <p>Mega KFC Value Meals with our best seller Chicken Krisper and Reg Fries.</p>
+            <div class="line">
+                <span class="price">₹249</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+<article class="foodcard currys">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/5/26/9dd1e94b-2711-470e-994e-28276a47b1ff_70adbda4-c9fc-4c70-9ea3-7398604e4858.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Krisper Meal</h3>
+                <span class="rating">★ 3.5</span>
+            </div>
+            <p>True Value unlocked! Make it a meal and add to Chicken Krisper, 2 Hot Wings and refreshing Pepsi..</p>
+            <div class="line">
+                <span class="price">₹343</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+<article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/8/00a8f2cf-1d91-4894-970b-a8cbc50e8a87_e9f8aa1b-ed88-43b4-b285-15d39bcd6225.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Zinger Burger - Tandoori</h3>
+                <span class="rating">★ 3.5</span>
+            </div>
+            <p>Chicken zinger with a delicious Indian Tandoori flavour sauce| Allergens: Wheat, Soya, Milk| Protein/gm 25| Portion weight in gm 230| Kcal/serve 901| Carbohydrate/gm 62| Total Fat/gm 29| Sodium/serve 862|.</p>
+            <div class="line">
+                <span class="price">₹239</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+    
+<article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/1/13/7c5d9bea-1ee4-42e3-881a-9fcaa7166265_2198b00a-98a4-4ccd-b65f-379e60645b8b.png" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>McSpicy Premium Chicken Burger Protein Plus (2 Slices)</h3>
+                <span class="rating">★ 4.0</span>
+            </div>
+            <p>Combination of a wholesome spicy chicken patty, steamed egg patty, topped with lettuce, Protein Slice, jalapenos and cheese slice, cocktail sauce & cheese sauce. Contains: Gluten, Milk, Egg, Soybeans, Sulphite.</p>
+            <div class="line">
+                <span class="price">₹325</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+    
+    <article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/9/3/7ca54dcb-558e-4e4e-bedf-f418faf877cb_7fe5fd9a-4ba3-4241-ba85-79d08a9eaefd.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Tandoori Chicken Tikka Rice Bowl</h3>
+                <span class="rating">★ 3.9</span>
+            </div>
+            <p>Serving size: 24 g protein / 602 kcal / 404 g. Juicy chicken marinated in classic tandoori spices, paired with basmati rice, beans, and nutritious vegetables. Allergens - contains milk, nut, soy, sulphite. Values include basmati rice, mixed beans, vegetables, southwest chipotle sauce and tandoori chicken..</p>
+            <div class="line">
+                <span class="price">₹329</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+    
+    <article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/7/21/4f6a5a61-9225-4723-bbed-a8d37e9b4702_6bfd79fc-99e7-4950-8f0f-ee81137678c6.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Peri Peri Chicken Sandwich</h3>
+                <span class="rating">★ 4.1</span>
+            </div>
+            <p>Serving size: 15cm - 23 g protein / 490 kcal / 274 g, 30cm - 46 g protein / 980 kcal / 548 g. Let your tastebuds travel the world with african peri-peri flavoured chicken, served with nutritious veggies and packaged in your favourite bread of choice. Allergens - contains wheat, rye, barley, oats, milk, soy. Values include multigrain bread, lettuce, tomatoes, onions, green peppers and cucumbers..</p>
+            <div class="line">
+                <span class="price">₹279</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+ <article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/2/18/69a7fb8e-cc0b-4bed-9ebf-c650f76f6f71_68ce923a-68f3-4c06-99c6-6b452fca6e6d.png" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Burrito Roll Party Pack(8 Habanero Burritos Box)-Veg.</h3>
+                <span class="rating">★ 4.7</span>
+            </div>
+            <p>A box of 8 veg burrito rolls loaded with spicy habanero sauce, seasoned rice, beans and fresh veggies â€” wrapped tight for a fiery flavour punch. Perfect for sharing..</p>
+            <div class="line">
+                <span class="price">₹1352</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/6/2/02162328-5656-49ff-bafd-04be72ac6411_99f2a1c3-bebe-4678-9ddb-92b6fe514504.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Paneer Maxxx Tandoori Twist.</h3>
+                <span class="rating">★ 5.0</span>
+            </div>
+            <p>Loaded with 2x Paneer and a minty twist of Tandoori sauce along with crust stuffed with mesmerizing veg kebab.</p>
+            <div class="line">
+                <span class="price">₹319</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/5/12/8d6a1288-3b43-48bf-b803-2de0e0a50d6e_8e4af708-3f1f-4d48-9c8e-bad4ce9b7fef.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Maxxx - Shawarma (Med).</h3>
+                <span class="rating">★ 5.0</span>
+            </div>
+            <p>45+ gms of Protein: Chicken Rashers, Chicken Keema with Chicken Seekh Kebab in the crust layered with Shawarma Sauce.</p>
+            <div class="line">
+                <span class="price">₹599</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard snak">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/3/28/cb229af3-0a54-42e7-8942-89142b7d496f_1d81b2f2-2641-4ea4-a58d-97f5c3d460c0.jpg" alt="Paneer Rice Bowl">
+        <span class="tag">BEST SELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Sourdough Garlic Bread.</h3>
+                <span class="rating">★ 5.0</span>
+            </div>
+            <p>Golden sourdough baked with garlic butter and herbs. Crisp outside, fluffy inside.</p>
+            <div class="line">
+                <span class="price">₹219</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard milkshakes">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/26/ba070a89-5ff2-419f-97ab-b0f23d35079b_0e4f9a02-9bf5-4bfb-8a47-dd900dd96a1f.png" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Choco Saffron Creme Frappuccinod.</h3>
+                <span class="rating">★ 5.0</span>
+            </div>
+            <p>Made from coffee blended with mocha, milk and ice. Finished off with a delicious Saffron Flavoured whipped topping and rose crumbs and marigold drizzle. A coffee free festive delight. This is a flavoured beverage and does not contain actual Saffron Serving size (ml)/Calories (kcal) - Tall (354ml) - 350 kcal / Grande (473ml) - 476 kcal / Venti (591ml) - 592 kcal. Allergen - Milk, Soy, Wheat.</p>
+            <div class="line">
+                <span class="price">₹495</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    
+    <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/26/e785c731-c5f3-4a94-bebd-1dd2429ce11f_bb5805c6-b442-4225-a98e-a545a563c002.png" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Saffron Tres Leches.</h3>
+                <span class="rating">★ 4.2</span>
+            </div>
+            <p>Try our kesar-licious mithai inspired take on the classic Tres Leches. Served with a saffron and pistachio flavoured milk. Per Serve (150 g) - 689 kcal. Allergens: Milk, Soy, Wheat, Nuts. Serving size (ml)/Calories (kcal) - Tall (354ml) - 185 kcal / Grande (473ml) - 304 kcal. Allergen - Milk, Oats..</p>
+            <div class="line">
+                <span class="price">₹350</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     
+    <article class="foodcard milkshakes">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/26/e1953e7c-a78e-4a21-a9db-dea11d7caf1c_c49b5ca4-ed73-4b62-9178-eab7311b0bf3.png" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Marigold Oat cold brew.</h3>
+                <span class="rating">★ 4.3</span>
+            </div>
+            <p>Starbucks Signature cold brew shaken with oat and condensed milk accentuated with marigold drizzle. Serving size (ml)/Calories (kcal) - Tall (354ml) - 185 kcal / Grande (473ml) - 304 kcal. Allergen - Milk, Oats..</p>
+            <div class="line">
+                <span class="price">₹395</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     
+    <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/26/d7c94407-83f1-4e2f-89ad-cb7604e68dbe_464e9766-012e-4586-8c86-4c9236526718.png" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Saffron Custard Pinwheel.</h3>
+                <span class="rating">★ 5.0</span>
+            </div>
+            <p>A kesar-licious pinwheel croissant with a saffron custard filling, white choco glaze, crushed pistachio and dried rose petals. Per Serve (115 g) - 456 kcal. Allergens: Milk, Wheat, Nuts..</p>
+            <div class="line">
+                <span class="price">₹330</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     
+    <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/26/b0f3b5bf-5741-4435-b7e2-0fcd00a1cc44_a5fe9fef-7b1d-4725-bce8-7052c1c202bf.png" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Rose Pistachio Loaf Cake   </h3>
+                <span class="rating">★ 4.8</span>
+            </div>
+            <p>Pair your coffee with our festive inspired, rose and pistachio loaf cake topped with a decadent saffron flavoured cream cheese frosting, pistachio powder and rose petals. Per Serve (125 g) - 590 kcal. Allergens: Milk, Soy, Wheat, Nuts..</p>
+            <div class="line">
+                <span class="price">₹300</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     
+    <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/26/133f3d7d-82d3-434e-abb0-b9b3fb86ff8b_44387ed1-1865-4cd3-9f8f-8c78811fce60.jpg" alt="Paneer Rice Bowl">
+        <span class="tag">SPECIAL</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Artisanal Handcrafted Chocolates.</h3>
+                <span class="rating">★ 5.0</span>
+            </div>
+            <p>Celebrate the festival of lights with this indulgent box of 12 assorted chocolates specially curated with Paul and Mike. 2 units each of 6 unique handcrafted chocolates , this luxurious collection is ideal for Diwali gifting or enjoying as a special treat. Net Weight: 116g 1. Caramel Macchiato(57kcal/10g) 2. Saffron Pista(78kcal/10g) 3. Chocolate Berry crunch(42kcal/8g) 4. Pista Katli(57kcal/10g) 5. Cashew Cremino(60Kcal/10g) 6. Hazelnut Praline(60Kcal/ 10g)Allergens: Milk, Soy, Wheat, Nuts.</p>
+            <div class="line">
+                <span class="price">₹942.86</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/26/55604ff7-60e2-4312-a315-8fecc6b19717_3977ce13-7b92-4476-9321-92de4d9dbecc.jpg" alt="Paneer Rice Bowl">
+        <span class="tag">SPECIAL</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Diwali Blend 150g Pack.</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>Enwrap your senses in notes of dusted cocoa that melt into a syrupy body with a crisp candied ginger finish. Treat your taste buds to a celebratory flavour brewed using a siphon for a visually stunning coffee experience. Kcal - 0 per serve Net weight - 150g Allergen: Nil.</p>
+            <div class="line">
+                <span class="price">₹809.52</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/4/8/d5aada58-7506-448a-9d06-9f8727160938_cc945001-2fb8-4e33-b283-049215287850.jpg" alt="Paneer Rice Bowl">
+        <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Best Seller Bundle.</h3>
+                <span class="rating">★ 3.9</span>
+            </div>
+            <p>Try Our Best-Selling Food & Beverage Combos!.</p>
+            <div class="line">
+                <span class="price">₹480</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard Coffee">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/10/1/da7330a5-5533-45ba-b257-edddec44dd0e_4abf46ec-6614-4492-a59d-b0eaa28edb82.png_compressed" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Signature Cold Coffee.</h3>
+                <span class="rating">★ 4.6</span>
+            </div>
+            <p>Your favorite coffee and milk blended with lots of ice. Serving Size(gm/ml) - 300, Energy (kcal) - 227.52, Contains Milk.</p>
+            <div class="line">
+                <span class="price">₹300</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/10/6/031cad9a-db32-4121-8453-84170fde9df3_a150321f-d1f2-4fff-8309-97830cba9a46.jpg" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Butterscotch Crunch Cake (695 g).</h3>
+                <span class="rating">★ 4.4</span>
+            </div>
+            <p>Delightfully moist Butterscotch cake, layered with silky butterscotch mousse and topped with crunchy toffee crisps, Serving Size(gm/ml) - 100, Energy (kcal) - 258.77 , Contains Gluten, Contains Milk, Contains Nuts, Contains Soy.</p>
+            <div class="line">
+                <span class="price">₹729</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard Break-fast">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/7/23/c5161c0d-71a5-4bcf-8fad-aa1d594da998_b9956605-43fa-44b3-b5eb-4b2ccdc64135.png" alt="Paneer Rice Bowl">
+        <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Onion Dosa.</h3>
+                <span class="rating">★ 4.5</span>
+            </div>
+            <p>Roasted south indian breakfast made from healthy fermented batter from lentils,topped with seasoned onion mix, served with pally chutney and allam chutney.</p>
+            <div class="line">
+                <span class="price">₹109</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard Break-fast">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/7/23/e70184e6-add3-4a0e-af39-9bebce9b6caf_dc173c79-5004-40fd-8c44-ed17485e9606.png" alt="Paneer Rice Bowl">
+        <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Vada </h3>
+                <span class="rating">★ 4.5</span>
+            </div>
+            <p>Deep oil fried south indian breakfast made from lentils and spices, served with pally chutney and allam chutney.</p>
+            <div class="line">
+                <span class="price">₹79</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard Break-fast">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/7/23/b476f3c9-66bf-4130-890f-1e18f5753775_760a8118-2e27-42bb-83cf-358d6363ae19.png" alt="Paneer Rice Bowl">
+        <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Poori </h3>
+                <span class="rating">★ 4.5</span>
+            </div>
+            <p>Oil fried round shaped south indian breakfast made from wheat flour, served with aloo masala.</p>
+            <div class="line">
+                <span class="price">₹95</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard Break-fast">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/7/23/d57f13b6-534d-46f6-8d82-e56a181c332e_e044808b-37b7-4019-a0e7-025067eca039.jpg" alt="Paneer Rice Bowl">
+        <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Bajji </h3>
+                <span class="rating">★ 4.5</span>
+            </div>
+            <p>Deep fried, south indian breakfast made from refined flour, curd and spices, served with pally chutney and allam chutney.</p>
+            <div class="line">
+                <span class="price">₹95</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/3/29/4ff99cd6-9513-457b-b412-9fac1a3278b7_bc2a8add-a38c-4fc9-9d84-56886ccfc0a5.png_compressed" alt="Paneer Rice Bowl">
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Belgium Chocolate Tres Leches </h3>
+                <span class="rating">★ 4.0</span>
+            </div>
+            <p>Serves 1 | Decadent chocolate sponge soaked in chocolate milk, finished with silky belgian ganache.</p>
+            <div class="line">
+                <span class="price">₹299</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard dessert">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/v9wy9cyumfq26ficndyl" alt="Paneer Rice Bowl">
+       <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chocolate Brownie </h3>
+                <span class="rating">★ 4.4</span>
+            </div>
+            <p>Serves 1 | (Serves 1 - 200 Calories each).</p>
+            <div class="line">
+                <span class="price">₹129</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard milkshakes">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/7/20/c1898b56-98ff-4e06-93b8-5b0e2f7fa7d2_65463487-5739-42b8-ba36-5967db0d84b6.jpg" alt="Paneer Rice Bowl">
+       <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Hot chocolate </h3>
+                <span class="rating">★ 4.4</span>
+            </div>
+            <div class="line">
+                <span class="price">₹169</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard juices">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/5973b9c900e342cfdadd5a28bb2751cc" alt="Paneer Rice Bowl">
+       <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Fresh lemon juice </h3>
+                <span class="rating">★ 4.4</span>
+            </div>
+            <div class="line">
+                <span class="price">₹145</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard juices">
+        <div class="foodphoto">
+            <img src="https://static.vecteezy.com/system/resources/previews/030/708/842/non_2x/of-some-rose-milk-drink-elegantly-plated-on-a-table-generative-ai-photo.jpg" alt="Paneer Rice Bowl">
+       <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Rose Milk </h3>
+                <span class="rating">★ 4.3</span>
+            </div>
+            <div class="line">
+                <span class="price">₹145</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard Snaks">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/8/5/608c3a66-e506-460f-a3aa-d1d543719390_7f272e4c-c138-43b8-ba29-b8b5f66e7446.JPG" alt="Paneer Rice Bowl">
+       <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Cocktail Samosa</h3>
+                <span class="rating">★ 4.1</span>
+            </div>
+            <p>Golden, crispy mini samosas filled with deliciously spiced potato stuffing, crafted for the perfect one-bite indulgence.</p>
+            <div class="line">
+                <span class="price">₹129</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard Snaks">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/8/29/10796518-f29d-4b1a-8999-95cc2f4b79ce_c908852c-3126-4fb3-80ad-3ed79d25c281.jpg_compressed" alt="Paneer Rice Bowl">
+       <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>French Fries</h3>
+                <span class="rating">★ 4.6</span>
+            </div>
+            <p>Golden, crispy French fries with a fluffy interior, lightly seasoned to perfection, perfect for dipping in ketchup or enjoying on their own. (Served with Tomato Ketchup).</p>
+            <div class="line">
+                <span class="price">₹229</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <div class="promo">
+    <div>
+        <h3>A Little Treat With Your Meal</h3>
+        <p>Join Food Nova Membership to enjoy exclusive discounts, special offers, and delicious rewards on your favourite meals!.</p>
+    </div>
+    <a class="btn" href="#menuHead">GET</a>
+</div>
+</section>
+
+ <reviews>
+    <h2>Customer Reviews</h2>
+    <p>Read what our customers have to say about their experience with NEXORA products and services.</p>
+    <button class="add" id="writeReviewBtn">Write a Review</button>
+    </write review>
+      <form id="reviewForm">
+        <div class="field">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="rating">Rating:</label>
+          <select id="rating" name="rating" required>
+            <option value="">Select rating</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="review">Review:</label>
+          <textarea id="review" name="review" rows="4" required></textarea>
+        </div>
+     
+    <Submit review>
+      <button class="add" id="submitReviewBtn">Submit Review</button>
+      <div class="grid">
+      <div class="card">
+        <h3>John Doe</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>Great Company! Highly recommend.</p>
+      </div>
+      <div class="card">
+        <h3>Jane Smith</h3>
+        <p>⭐⭐⭐⭐</p>
+        <p>Good value for money. Satisfied with the purchase.</p>
+      </div>
+      <div class="card">
+        <h3>Mike Johnson</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>Excellent quality and fast delivery!</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Emily Davis</h3>
+      <p>⭐⭐⭐⭐</p>
+      <p>Food met my expectations. Will buy again.</p>
+    </div>
+    <div class="card">
+      <h3>David Wilson</h3>
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>Very satisfied with the food and company. Great customer service.</p>
+    </div>
+    <div class="card">
+      <h3>Mihcil</h3>
+      <p>⭐⭐⭐⭐</p>
+      <p>Good quality and fast delivery. Happy with the purchase.</p>
+    </div>
+  </reviews>
+  
+
+<section>
+<footer class="footer">
+    <div class="footin">
+        <div>
+            <div class="logo">Food<span>Nova</span></div>
+            <p>Good food for everyday moods.</p>
+        </div>
+
+        <div>
+            <b>Need a Hand?</b>
+            <p>Support · Ordering Guide · Food Information</p>
+        </div>
+
+         <div>
+            <about us>
+    <h2>About Us</h2>
+    <p>Welcome to Food <span>Nova</span> — GET Your Food At destination !
+
+At Food <span>Nova</span>,designed to provide a smooth and enjoyable food-browsing experience with attractive food pictures, clear prices, and a user-friendly design.
+
+FOOD NOVA — Shop Smart. Live Better.</p>
+Location: Chennai,Tamil Nadu, India
+<p>Other countries: Germany, Japan, China, Singapore,America.</p>
+
+    <div class="card">
+      <h3>Contact Us</h3>
+      <p>Email: FOOD<span>NOVA</span>@gmail.com</p>
+      <p>Phone: +91 9246945309</p>
+    </div>
+  </div>
+</div>
+  </about us>
+  <Teams and condition>
+    <h2>Terms and Conditions</h2>
+    <p>By using Food Nova, you agree to our terms and conditions. Please read them carefully before making a purchase.</p>
+    <ul>
+      <li>Get the food items at anywhere.</li>
+      <li>Prices and offers are subject to change without notice.</li>
+      <li>We reserve the right to refuse service to anyone for any reason at any time.</li>
+      <li>Returns and refunds are subject to our return policy.</li>
+    </ul>
+    <br>
+    <p></p>
+
+
+    <p>&copy; 2026 Food<span>Nova</span>. All rights reserved.</p>
+  </body>
+</html>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CakeVerse</title>
+
+<style>
+:root {
+  --berry: #853f54;
+  --rose: #d77d91;
+  --pink: #fae9ed;
+  --cream: #fffaf6;
+  --ink: #36262a;
+  --muted: #806d71;
+  --line: #f0dfe2;
+  --gold: #b98238;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.top {
+  background: var(--berry);
+  color: white;
+  text-align: center;
+  padding: 9px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.top b {
+  color: #ffe0ad;
+}
+
+.header {
+  background: #fffaf6ed;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.head {
+  max-width: 1160px;
+  margin: auto;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--berry);
+  white-space: nowrap;
+}
+
+.logo small {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav button {
+  border: 0;
+  background: transparent;
+  padding: 10px 12px;
+  color: #765e63;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.nav button:hover {
+  color: var(--berry);
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+
+.head-right {
+  display: flex;
+  gap: 8px;
+}
+
+.cart {
+  background: var(--berry);
+  color: white;
+  border: 0;
+  border-radius: 30px;
+  padding: 11px 15px;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.icon {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 39px;
+  height: 39px;
+}
+
+.wrap {
+  max-width: 1160px;
+  margin: auto;
+  padding: 0 22px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+  margin: 24px 0 42px;
+  background: #f8e7e8;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.hero-copy {
+  padding: clamp(28px, 5vw, 63px);
+  align-self: center;
+}
+
+.eyebrow {
+  font: 700 10px Arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--berry);
+}
+
+h1 {
+  font-size: clamp(38px, 5vw, 63px);
+  line-height: 1.02;
+  letter-spacing: -1.6px;
+  font-weight: 500;
+  margin: 16px 0 19px;
+}
+
+.hero-copy p {
+  font-size: 16px;
+  color: #795e65;
+  line-height: 1.8;
+  max-width: 400px;
+}
+
+.btn {
+  font-family: Arial, sans-serif;
+  background: var(--berry);
+  color: white;
+  border: 0;
+  padding: 13px 18px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .6px;
+}
+
+.btn.light {
+  background: transparent;
+  color: var(--berry);
+  border: 1px solid var(--berry);
+}
+
+.hero-image {
+  position: relative;
+  min-height: 340px;
+  background: #f5d5db;
+  display: grid;
+  place-items: center;
+  font-size: clamp(120px, 18vw, 205px);
+  overflow: hidden;
+}
+
+.hero-image img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  opacity: .86;
+}
+
+.hero-image:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #5b26341a, transparent);
+}
+
+.hero-stamp {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  right: 20px;
+  background: #fffaf2ef;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--berry);
+  font-weight: bold;
+  transform: rotate(8deg);
+  border: 1px solid #dcb9c2;
+}
+
+.intro {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 25px;
+}
+
+.intro h2 {
+  font-size: 34px;
+  font-weight: 500;
+  margin: 8px 0 10px;
+}
+
+.intro p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.category-row {
+  display: flex;
+  gap: 9px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.chip {
+  border: 1px solid #e7cbd2;
+  background: transparent;
+  padding: 10px 17px;
+  border-radius: 30px;
+  color: var(--berry);
+  font: 12px Arial, sans-serif;
+}
+
+.chip.active,
+.chip:hover {
+  background: var(--berry);
+  color: white;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin: 25px 0 52px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  padding-bottom: 16px;
+  text-align: center;
+  transition: .2s;
+}
+
+.card:hover {
+  box-shadow: 0 13px 28px #71364912;
+  transform: translateY(-3px);
+}
+
+.photo {
+  height: 235px;
+  background: #f9e6e8;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: .4s;
+}
+
+.card:hover img {
+  transform: scale(1.04);
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #fffaf4;
+  color: var(--berry);
+  padding: 7px 9px;
+  font: 700 9px Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.details {
+  padding: 17px 15px;
+}
+
+.details h3 {
+  font-size: 21px;
+  font-weight: 500;
+  margin: 0 0 7px;
+}
+
+.desc {
+  font: 12px/1.6 Arial, sans-serif;
+  color: var(--muted);
+  min-height: 39px;
+}
+
+.stars {
+  font: 12px Arial, sans-serif;
+  color: var(--gold);
+  margin: 9px 0;
+}
+
+.price {
+  font: 700 16px Arial, sans-serif;
+}
+
+.old {
+  font: 12px Arial, sans-serif;
+  color: #a99a9d;
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.add {
+  background: #fff;
+  color: var(--berry);
+  border: 1px solid #d6a4b1;
+  padding: 9px 12px;
+  font: 700 11px Arial, sans-serif;
+}
+
+.add:hover {
+  background: var(--berry);
+  color: white;
+}
+
+.season {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  background: #f7e4e6;
+  margin: 40px 0 50px;
+}
+
+.season-art {
+  font-size: 120px;
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  background: linear-gradient(135deg, #f3d4da, #ffede5);
+}
+
+.season-text {
+  padding: 30px;
+  align-self: center;
+}
+
+.season-text h3 {
+  font-size: 29px;
+  font-weight: 500;
+  margin: 8px 0;
+}
+
+.season-text p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.custom {
+  background: white;
+  border: 1px solid var(--line);
+  padding: clamp(20px, 4vw, 38px);
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 35px;
+  margin: 45px 0;
+}
+
+.custom h2 {
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 12px 0;
+}
+
+.custom p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.promise {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.promise div {
+  background: #fff5f4;
+  padding: 12px;
+  font: 12px Arial, sans-serif;
+  color: #765e63;
+}
+
+.formgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font: 12px Arial, sans-serif;
+  color: var(--berry);
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid var(--line);
+  background: #fffdfb;
+  border-radius: 0;
+  padding: 12px;
+  font: 13px Arial, sans-serif;
+  color: var(--ink);
+  width: 100%;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.formgrid button {
+  grid-column: 1 / -1;
+}
+
+.reviews {
+  background: #fff5f4;
+  text-align: center;
+  padding: 35px 22px;
+  margin: 35px 0;
+}
+
+.reviews h2 {
+  font-weight: 500;
+  font-size: 30px;
+  margin: 5px;
+}
+
+.reviews blockquote {
+  max-width: 610px;
+  margin: 18px auto 8px;
+  color: #755c62;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.footer {
+  background: #3b2930;
+  color: #fff;
+  padding: 32px 22px;
+}
+
+.footin {
+  max-width: 1160px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer p {
+  font: 12px/1.7 Arial, sans-serif;
+  color: #d9c7ce;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #28131b88;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modalbox {
+  background: #fffaf6;
+  width: min(470px, 100%);
+  padding: 28px;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.mhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mhead h2 {
+  font-weight: 500;
+  margin: 0;
+}
+
+.close {
+  border: 0;
+  background: #f5e4e8;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 20px;
+  color: var(--berry);
+}
+
+.note {
+  font: 11px/1.6 Arial, sans-serif;
+  color: var(--muted);
+}
+
+.cartlist {
+  margin: 15px 0;
+}
+
+.cartrow {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  font-family: Arial, sans-serif;
+}
+
+.em {
+  height: 48px;
+  background: #f9e7e9;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.cartrow h4 {
+  font-size: 12px;
+  margin: 0 0 6px;
+}
+
+.qty {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.qty button {
+  background: white;
+  border: 1px solid var(--line);
+  width: 23px;
+  height: 23px;
+}
+
+.totalrow {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-family: Arial, sans-serif;
+}
+
+.toast {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translate(-50%, 15px);
+  background: var(--berry);
+  color: white;
+  padding: 12px 18px;
+  font: 12px Arial, sans-serif;
+  opacity: 0;
+  transition: .2s;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 850px) {
+  .head {
+    flex-wrap: wrap;
+    gap: 13px;
+  }
+
+  .nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .custom {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 570px) {
+  .head {
+    padding: 13px 15px;
+  }
+
+  .wrap {
+    padding: 0 15px;
+  }
+
+  .nav {
+    justify-content: flex-start;
+    overflow: auto;
+  }
+
+  .nav button {
+    white-space: nowrap;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    margin: 16px 0 32px;
+  }
+
+  .hero-copy {
+    padding: 28px;
+  }
+
+  .hero-image {
+    min-height: 220px;
+    font-size: 120px;
+  }
+
+  .products {
+    gap: 10px;
+  }
+
+  .photo {
+    height: 155px;
+  }
+
+  .details {
+    padding: 12px 8px;
+  }
+
+  .details h3 {
+    font-size: 17px;
+  }
+
+  .desc {
+    font-size: 11px;
+  }
+
+  .action {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .season {
+    grid-template-columns: 1fr;
+  }
+
+  .season-art {
+    min-height: 150px;
+  }
+
+  .formgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .field.full,
+  .formgrid button {
+    grid-column: auto;
+  }
+
+  .custom {
+    padding: 19px;
+    gap: 15px;
+  }
+
+  .promise {
+    grid-template-columns: 1fr;
+  }
+
+  .intro h2 {
+    font-size: 29px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="top">
+  A LITTLE SWEETNESS FOR EVERY OCCASION &nbsp; · &nbsp;
+  <b>Complimentary message card with celebration cakes</b>
+</div>
+
+
+<button>Login</button>
+<button>Signup</button>
+
+<header class="header">
+  <div class="head">
+    <div class="logo">
+      CakeVerse 🎂
+      <small>BAKERY · CAKE STUDIO</small>
+    </div>
+
+    <nav class="nav">
+      <button data-jump="treats">Our treats</button>
+      <button data-jump="custom">Custom cakes</button>
+      <button data-jump="story">Our story</button>
+    </nav>
+
+    <div class="head-right">
+      <button class="icon" id="searchBtn" aria-label="Search products">⌕</button>
+      <button class="cart" id="openCart">
+        🛍 Bag <span id="count">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Small-batch · Made with care</div>
+      <h1>Sweet moments,<br>beautifully made.</h1>
+      <p>
+        From celebration cakes to buttery pastries, discover little
+        treats made for sharing, gifting and making ordinary days special.
+      </p>
+      <button class="btn" data-jump="treats">EXPLORE THE BAKERY ↗</button>
+    </div>
+
+    <div class="hero-image">
+      <img
+        alt="Bakery cake display"
+        src="https://5.imimg.com/data5/SELLER/Default/2023/12/368911825/FB/QR/CZ/204988402/bakery-interior-designing-service.jpg">
+      <div class="hero-stamp">BAKED<br>WITH<br>LOVE ✿</div>
+    </div>
+  </section>
+
+  <section class="intro" id="treats">
+    <div class="eyebrow">From our kitchen</div>
+    <h2>Something for your sweet tooth</h2>
+    <p>
+      Choose a ready-made favourite or tell us about the celebration
+      you are planning. Our sample menu gives you a taste of the
+      Butter & Bloom experience.
+    </p>
+  </section>
+
+  <div class="category-row">
+    <button class="chip active" data-cat="all">All treats</button>
+    <button class="chip" data-cat="cakes">Celebration cakes</button>
+    <button class="chip" data-cat="pastries">Pastries & cupcakes</button>
+    <button class="chip" data-cat="cookies">Cookies</button>
+  </div>
+
+  <div style="display:flex;justify-content:flex-end;margin:8px 0 17px">
+    <input
+      id="search"
+      placeholder="Search cakes & treats…"
+      style="padding:10px 12px;border:1px solid var(--line);background:white;max-width:270px;width:100%"
+      aria-label="Search treats">
+  </div>
+
+  <section class="products" id="products"></section>
+
+  <section class="season">
+    <div class="season-art">🍓🍰</div>
+    <div class="season-text">
+      <div class="eyebrow">Seasonal favourite</div>
+      <h3>Strawberry cream dreams</h3>
+      <p>
+        Soft sponge, cloud-like cream and bright strawberry notes —
+        a lovely pick for birthdays, tea time or simply because.
+      </p>
+      <button class="btn" data-add="2">ADD SEASONAL CAKE · ₹999</button>
+    </div>
+  </section>
+
+
+<style>
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.foodcard {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.foodphoto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.info {
+    padding: 15px;
+}
+
+@media (max-width: 700px) {
+    .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px) {
+    .food-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+  
+
+  
+<div class="food-grid">
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://www.rozanabakery.in/cdn/shop/files/ChatGPT_Image_Jul_9_2026_03_37_24_PM.png?v=1783591660" alt="Paneer Rice Bowl">
+            <span class="tag">POPULAR</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chocolate Super-Cake</h3>
+                <span class="rating">★ 5.3</span>
+            </div>
+            <p>The Superman of Chocolate Cakes, Chocolate Super-Cake, crafted with rich and creamy chocolate buttercream that perfectly complements the soft, moist layers of chocolate sponge. Each bite is a velvety smooth journey of rich cocoa flavor, making it the perfect dessert for chocolate lovers.
+
+Whether for birthdays, anniversaries, or any celebration, this cake is sure to impress with its indulgent taste and elegant design.</p>
+            <div class="line">
+                <span class="price">₹550.00</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    
+    <article class="foodcard Dessert">
+        <div class="foodphoto">
+            <img src="https://www.rozanabakery.in/cdn/shop/files/Kitkat_Chocolate_Cake.png?v=1778064850&width=990" alt="Paneer Rice Bowl">
+            <span class="tag">POPULAR</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Kitkat Cake</h3>
+                <span class="rating">★ 5.2</span>
+            </div>
+            <p>Treat yourself to the ultimate chocolate indulgence with our KitKat Cake, made with light, airy chocolate cream and generously topped with crunchy KitKat bars. The soft chocolate sponge is complemented by smooth chocolate cream, creating a perfect balance of flavor and texture. Topped with more KitKat pieces, this cake delivers the perfect combination of creamy and crunchy in every bite.
+
+Whether for birthdays, anniversaries, or a fun treat, our KitKat Cake is sure to delight chocolate lovers of all ages.</p>
+            <div class="line">
+                <span class="price">₹549.00</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article><!-- Put your second and third food cards here -->
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://www.rozanabakery.in/cdn/shop/files/Choco_Vanilla_Cake.png?v=1778064285&width=990" alt="Paneer Rice Bowl">
+            <span class="tag">POPULAR</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Choco Vanilla Cake</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>For those who want the best of both the worlds, our Half & Half Cake is half chocolate truffle and half plain Vanilla. If you slice it right, you could get a taste of both the flavours!
+
+Perfect for birthdays, celebrations, or a sweet indulgence, this cake is sure to satisfy your cravings for chocolate & Vanilla.</p>
+            <div class="line">
+                <span class="price">₹479.00</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2025/7/5/7ec8a97f-2e6d-43ff-9576-bcaa0e14a390_90492d04-b85b-4529-b368-85e17ff4b524.jpg" alt="Paneer Rice Bowl">
+            <span class="tag">POPULAR</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Hazelnut Gateaux Cake</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>Serves 1 | Hazelnut Gateaux A rich and creamy treat with layers of hazelnut mousse and soft sponge cake.</p>
+            <div class="line">
+                <span class="price">₹720.00</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/6/15/fcf14534-7efa-4c24-a7ca-0c2fb007933d_e3672f55-2128-45ba-987f-8cfb4806533d.png_compressed" alt="Paneer Rice Bowl">
+            <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chicken Puff</h3>
+                <span class="rating">★ 4.2</span>
+            </div>
+            <p>Serves 1 | Chicken Puff:"Flaky puff pastry filled with a flavorful, spiced chicken mixture, baked to golden perfection."Would you like one-liners for the previous items as well?</p>
+            <div class="line">
+                <span class="price">₹100</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/6/11/230628a9-8d20-4abf-b482-5c97830e68ef_620baf28-1282-427a-b68d-c63c3011ce59.png_compressed" alt="Paneer Rice Bowl">
+            <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Panner Puff</h3>
+                <span class="rating">★ 3.8</span>
+            </div>
+            <p>Serves 2 | Paneer Puff:Flaky puff pastry filled with a spiced paneer masala blend, baked to golden perfection.</p>
+            <div class="line">
+                <span class="price">₹50</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/6/15/b9e9f5a7-76de-4d08-9356-d7971bc0302b_b6521e53-b3ac-4333-911b-125695324c05.png_compressed" alt="Paneer Rice Bowl">
+            <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Veg Samosa</h3>
+                <span class="rating">★ 4.8</span>
+            </div>
+            <p>Serves 1 | Veg Samosa: Crispy golden samosa stuffed with a spicy and savory potato filling.</p>
+            <div class="line">
+                <span class="price">₹40</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2024/11/15/d9f01f7e-de2a-4c25-81d6-a41b214e82c3_9fea58f0-d120-4e84-b5ab-4904df8d9b8d.JPG" alt="Paneer Rice Bowl">
+           
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chocolate Mud Crumble</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>Serves 1 | Chocolate Mud Crumble: Decadent, fudgy chocolate cake with a buttery crumble toppingpure indulgence in every bite.</p>
+            <div class="line">
+                <span class="price">₹215</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/9/28/f98b624f-8719-40ce-980c-0bb3cf87e9e7_58787ab5-a6f7-4de7-a858-00b3a59de873.png_compressed" alt="Paneer Rice Bowl">
+            
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Red Velvet (Single Serve)</h3>
+                <span class="rating">★ 4.2</span>
+            </div>
+            <p>Serves 1 | Soft, moist red velvet cake layered with smooth cream cheese frosting.</p>
+            <div class="line">
+                <span class="price">₹210</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/6/12/c5058a29-18f2-4db5-8c2f-9015deadc640_d3889580-595d-4ff4-8ac8-2e1893fef96f.png_compressed" alt="Paneer Rice Bowl">
+
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Lava Cake Molten Chocolate</h3>
+                <span class="rating">★ 4.3</span>
+            </div>
+            <p>Serves 1 | Lava Cake Molten Chocolate Decadent chocolate cake with a rich, gooey molten center that melts in every bite.</p>
+            <div class="line">
+                <span class="price">₹205</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2024/11/15/2b58e6d8-7325-47cc-bb7e-60923475d914_00bad42a-66e2-44ce-946b-c8d92bfad452.JPG" alt="Paneer Rice Bowl">
+            <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Chocolate Cup Cake Pack of 2</h3>
+                <span class="rating">★ 4.6</span>
+            </div>
+            <p>Serves 2 | Soft, fluffy, and intensely chocolatey. A pack of two decadent cupcakes crafted to satisfy your sweet tooth cravings instantly.</p>
+            <div class="line">
+                <span class="price">₹85</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+     <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/1/21/0abf71b3-664c-4208-9ce2-c0de191bc25e_49fbd55b-89e8-42c3-8e2a-7c3c916d6292.jpg" alt="Paneer Rice Bowl">
+            <span class="tag">BESTSELLER</span>
+        </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Dark Chocolate</h3>
+                <span class="rating">★ 4.6</span>
+            </div>
+            <p>Serves 1 | Dark Chocolate-Rich and intense dark chocolate crafted for true cocoa lovers.</p>
+            <div class="line">
+                <span class="price">₹100</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/3/14/65eec87a-107b-4f9d-9586-86cf3dcfd477_7f9bb397-a0f6-4dc3-ab6b-2c66f0274ed2.png_compressed" alt="Paneer Rice Bowl">
+           </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Classic Salt Cookies</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>Serves 1 | Crispy, delicate thins loaded with crunchy almonds for a delightful snack.</p>
+            <div class="line">
+                <span class="price">₹225</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/3/14/a68e6e9c-482b-4f75-bc5c-998d2f19a51f_07a0ebe3-bedb-4948-ba0b-f63fb35896ff.png_compressed" alt="Paneer Rice Bowl">
+            </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Fruit cookies</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>Serves 1 | Fruit cookies are delightful treats that incorporate a variety of toasted Cashewnuts and Tuti Fruity, adding bursts of natural sweetness and flavor in every bite</p>
+            <div class="line">
+                <span class="price">₹225</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="foodcard mains">
+        <div class="foodphoto">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/FOOD_CATALOG/IMAGES/CMS/2026/8/19/1fb537e7-b54a-4e66-bb48-df159e52f20f_6e779abb-f068-45b3-af40-97ccb667204d.jpg" alt="Paneer Rice Bowl">
+            </div>
+        <div class="info">
+            <div class="name-row">
+                <h3>Peanut Butter Cookies</h3>
+                <span class="rating">★ 4.9</span>
+            </div>
+            <p>Serves 1 | Crispy and delicious cookies made with roasted peanuts, butter, jaggery and molasses, offering a rich nutty flavor with a delightful crunch. Limited Edition</p>
+            <div class="line">
+                <span class="price">₹230</span>
+                <a class="add" href="#demo-order">ADD</a>
+            </div>
+        </div>
+    </article>
+
+
+</div>
+
+
+   <section class="custom" id="custom">
+    <div>
+      <div class="eyebrow">A cake made your way</div>
+      <h2>Let's make your celebration extra sweet.</h2>
+      <p>
+        Tell us the occasion, flavour and design you have in mind.</p>
+
+         <div class="promise">
+        <div>🌿 Freshly baked style</div>
+        <div>🎨 Personalised design</div>
+        <div>🎁 Gift-ready options</div>
+        <div>💌 Message card idea</div>
+      </div>
+    </div>
+
+    <form class="formgrid" id="cakeForm">
+      <label class="field">
+        Your name
+        <input name="name" required placeholder="Name">
+      </label>
+
+       <label class="field">
+        Occasion
+        <select name="occasion" required>
+          <option value="">Choose occasion</option>
+          <option>Birthday</option>
+          <option>Graduation</option>
+          <option>Anniversary</option>
+          <option>Baby shower</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label class="field">
+        Flavour
+        <select name="flavour" required>
+          <option value="">Choose flavour</option>
+          <option>Chocolate truffle</option>
+          <option>Vanilla strawberry</option>
+          <option>Red velvet</option>
+          <option>Butterscotch</option>
+          <option>Black forest</option>
+        </select>
+      </label>
+
+      <label class="field">
+        Size
+        <select name="size" required>
+          <option value="">Choose size</option>
+          <option>Half kg</option>
+          <option>1 kg</option>
+          <option>2 kg</option>
+          <option>3 kg or more</option>
+        </select>
+      </label>
+
+      <label class="field">
+        Preferred date
+        <input type="date" name="date" required>
+      </label>
+
+      <label class="field">
+        Contact email
+        <input type="email" name="email" required placeholder="you@example.com">
+      </label>
+
+      <label class="field full">
+        Design notes
+        <textarea name="notes" rows="3" placeholder="Colours, theme, cake message…"></textarea>
+      </label>
+
+      <button class="btn" type="submit">PREVIEW CAKE REQUEST →</button>
+    </form>
+  </section>
+
+  <section class="reviews" id="story">
+    <div class="eyebrow">A note from our table</div>
+    <h2>Made for the moments that matter.</h2>
+    <blockquote>
+      “The best celebrations are often the simplest ones — a table full
+      of people you love, a little cake, and one more slice to share.”
+    </blockquote>
+    <div style="color:var(--gold)">★★★★★</div>
+    </section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footin">
+    <div>
+      <div class="logo" style="color:white">CakeVerse 🎂</div>
+      <p>Bakery · Cake Studio<br>Sweet things, thoughtfully made.</p>
+    </div>
+
+    <div>
+      <b>Visit & contact</b>
+      <p>
+        Demo address: 12 Blossom Lane, Vijayawada<br>
+        Hours: Mon–Sun, 9 AM–7 PM<br>
+        CakeVerse@gmail.com
+      </p>
+    </div>
+
+<div class="modal" id="cartModal">
+  <div class="modalbox">
+    <div class="mhead">
+      <h2>Your bakery bag (<span id="bagCount">0</span>)</h2>
+      <button class="close" id="closeCart">×</button>
+    </div>
+
+    <div class="cartlist" id="cartlist"></div>
+
+    <div class="totalrow">
+      <span>Subtotal</span>
+      <b id="subtotal">₹0</b>
+    </div>
+
+    <div class="totalrow" style="font-size:19px">
+      <strong>Total</strong>
+      <strong id="total">₹0</strong>
+    </div>
+
+    <p class="note">Demo basket only; no payment or delivery is processed.</p>
+    <button class="btn" style="width:100%" id="checkout">
+      CONTINUE TO DEMO CHECKOUT
+    </button>
+  </div>
+</div>
+
+<div class="modal" id="checkoutModal">
+  <div class="modalbox">
+    <div class="mhead">
+      <h2>Bakery checkout</h2>
+      <button class="close" id="closeCheckout">×</button>
+    </div>
+
+    <p class="note">
+      This is a demonstration form and does not submit your details to a server.
+    </p>
+
+    <form id="orderForm">
+      <label class="field">
+        Name
+        <input name="name" required>
+      </label>
+
+      <label class="field">
+        Email
+        <input name="email" required type="email">
+      </label>
+
+      <label class="field">
+        Pickup or delivery
+        <select name="method">
+          <option>Pickup (demo)</option>
+          <option>Delivery (demo only)</option>
+        </select>
+      </label>
+
+      <button class="btn" style="width:100%">PLACE DEMO ORDER</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
